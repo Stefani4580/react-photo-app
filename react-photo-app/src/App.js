@@ -6,8 +6,8 @@ import Row from "react-bootstrap/Row";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import CardGroup from 'react-bootstrap/CardGroup';
-import Card from 'react-bootstrap/Card';
+import CardGroup from "react-bootstrap/CardGroup";
+import Card from "react-bootstrap/Card";
 import imageLoader from "./components/images";
 import Image from "./components/Image";
 
@@ -23,32 +23,35 @@ import Image from "./components/Image";
 // import IMAGE_9 from "./assets/images/terricks-noah-n9R0MN3XGvY-unsplash.jpg";
 // import IMAGE_10 from "./assets/images/alex-nemo-hanse-_KP6Ve-rnNw-unsplash.jpg";
 
-
-
-
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      images: this.loadImages()
-    }
+      images: this.loadImages(),
+    };
   }
 
   loadImages = () => {
-
     let jpgs = imageLoader();
     let images = [];
     for (let i = 0; i < jpgs.length; i++) {
       let image = new Image(jpgs[i].id, jpgs[i].src);
       images[i] = image;
-          
     }
     return images;
-
-  }
+  };
 
   render() {
+    const listOfCards = this.state.images.map((item, index) => {
+      // console.log("testing list items****", id)
+      return (
+        <Card>
+          <Card.Img variant="top" src={require(`${item.filename}`)} />
+        </Card>
+      );
+    });
+
     return (
       <div className="App">
         <Container fluid>
@@ -78,47 +81,7 @@ class App extends React.Component {
           </Navbar>
           <Row>
             <CardGroup>
-              <Card>
-                <Card.Img variant="top" src={require(`${this.state.images[0].filename}`)} />
-                <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-              </Card>
-              <Card>
-                <Card.Img variant="top" src={require(`${this.state.images[1].filename}`)} />
-                <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This card has supporting text below as a natural lead-in to
-                    additional content.{" "}
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-              </Card>
-              <Card>
-                <Card.Img variant="top" src={require(`${this.state.images[2].filename}`)} />
-                <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                    This is a wider card with supporting text below as a natural
-                    lead-in to additional content. This card has even longer
-                    content than the first to show that equal height action.
-                  </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-              </Card>
+              {listOfCards}
             </CardGroup>{" "}
           </Row>
         </Container>
