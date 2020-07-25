@@ -51,6 +51,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Container fluid>
+          {/* Navbar */}
           <Navbar bg="light" expand="lg">
             <Navbar.Brand href="#home">Reactagram</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
