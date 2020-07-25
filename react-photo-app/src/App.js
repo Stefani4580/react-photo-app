@@ -26,6 +26,7 @@ export default class App extends Component {
       show: false,
     });
   };
+
   handleShow = () => {
     this.setState({
       show: true,
@@ -55,16 +56,17 @@ export default class App extends Component {
           <Row>
             <Col xs={6} md={4} lg={3}>
               <Button
+              size="lg" block
                 variant="primary"
                 onClick={this.handleShow}
                 className={this.state.loginBtnVisibility}
-                className="loginBtn"
+                id="loginBtn"
               >
-                Login
+                Login to Reactagram
               </Button>
             </Col>
             <Col xs={6} md={4} lg={9}>
-              <h1>Welcome, {this.state.userName}</h1>
+              <h4 className={this.state.loggedIn}>Welcome, {this.state.userName}</h4>
             </Col>
           </Row>
         </Container>

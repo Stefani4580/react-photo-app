@@ -8,6 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Image from "react-bootstrap/Image";
+import Button from 'react-bootstrap/Button';
 
 // Helper Classes and Functions
 import imageLoader from "./imageLoader";
@@ -21,6 +22,7 @@ class Reactagram extends React.Component {
     super(props);
     this.state = {
       images: this.loadImages(),
+      quit: "visible"
     };
   }
 
@@ -33,6 +35,10 @@ class Reactagram extends React.Component {
     }
     return images;
   };
+
+  logout = () => {
+
+  }
 
   render() {
     const listOfImages = this.state.images.map((item, index) => {
@@ -71,6 +77,7 @@ class Reactagram extends React.Component {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
+              <Button variant="primary" onClick={this.logout}>Primary</Button>
             </Navbar.Collapse>
           </Navbar>
           <Row>{listOfImages}</Row>
