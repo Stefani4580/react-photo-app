@@ -73,7 +73,7 @@ export default class App extends Component {
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Login to Reactagram</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
