@@ -15,6 +15,7 @@ import MyImage from "./components/MyImage";
 
 // Components
 import UserProfile from "./components/UserProfile";
+import UserLogin from "./components/UserLogin";
 
 class App extends React.Component {
   constructor() {
@@ -45,6 +46,9 @@ class App extends React.Component {
       );
     });
 
+  
+
+
     return (
       <div className="App">
         <Container fluid>
@@ -70,6 +74,7 @@ class App extends React.Component {
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
+              <UserLogin />
             </Navbar.Collapse>
           </Navbar>
           <Row>{listOfImages}</Row>
