@@ -22,6 +22,8 @@ import IMAGE_8 from "./assets/images/simone-fischer-Rh1FYpKcYLs-unsplash.jpg";
 import IMAGE_9 from "./assets/images/terricks-noah-n9R0MN3XGvY-unsplash.jpg";
 // import IMAGE_10 from "./assets/images/alex-nemo-hanse-_KP6Ve-rnNw-unsplash.jpg";
 
+// Components
+import UserProfile from "./components/UserProfile";
 
 
 
@@ -29,9 +31,9 @@ class App extends React.Component {
   constructor() {
     super();
 
-    // this.state = {
-    //   images: this.loadImages()
-    // }
+    this.state = {
+      images: "./assets/images/hian-oliveira-7-gtkXm2b5U-unsplash.jpg"
+    }
   }
 
   // loadImages = () => {
@@ -78,7 +80,7 @@ class App extends React.Component {
           <Row>
             <CardGroup>
               <Card>
-                <Card.Img variant="top" src={IMAGE_1} />
+                <Card.Img variant="top" src={this.state.images} />
                 <Card.Body>
                   <Card.Title>Card title</Card.Title>
                   <Card.Text>
