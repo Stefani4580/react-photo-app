@@ -51,11 +51,21 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        <Container className={loginBtnVisibility}>
+        <Container fluid className="loginContainer">
           <Row>
-            <Button variant="primary" onClick={this.handleShow}>
-              Login
-            </Button>
+            <Col xs={6} md={4} lg={3}>
+              <Button
+                variant="primary"
+                onClick={this.handleShow}
+                className={this.state.loginBtnVisibility}
+                className="loginBtn"
+              >
+                Login
+              </Button>
+            </Col>
+            <Col xs={6} md={4} lg={9}>
+              <h1>Welcome, {this.state.userName}</h1>
+            </Col>
           </Row>
         </Container>
 
