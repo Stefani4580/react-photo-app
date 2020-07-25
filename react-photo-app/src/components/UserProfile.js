@@ -12,7 +12,6 @@ const UserProfile = (props) => {
 
     //Simulating Users Photos - just post a few by using %.  Post the index is divisible by 3.
   const listOfImages = props.images.map((item, index) => {
-    let filename = `.${item.filename}`;
     if (index % 3 === 0) {
       return (
         <Col xs={6} md={4} lg={3}>
