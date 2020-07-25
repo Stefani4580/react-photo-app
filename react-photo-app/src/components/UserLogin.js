@@ -3,24 +3,37 @@ import React from "react";
 // Bootstrap
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Form from 'react-bootstrap/Form';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 function UserLogin() {
   const [show, setShow] = React.useState(false);
+  const [user, setUser] = React.useState("");
+  const [loggedIn, setLoggedIn] = React.useState("invisible");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted");
+    console.log("Form submitted:  ", e.target.value);
+    setLoggedIn("visible");
     handleClose();
-  }
+  };
+
+  const getEmail = (e) => {
+    setUser(e.target.value);
+  };
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+      <Row>
+          <h1 class={loggedIn}>Hello, {user}</h1>
+        <Button variant="primary" onClick={handleShow}>
+          Login
+        </Button>
+      </Row>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -30,7 +43,11 @@ function UserLogin() {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={getEmail}
+              />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -46,9 +63,9 @@ function UserLogin() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-              Submit
-            </Button>
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Submit
+          </Button>
 
           <Button variant="secondary" onClick={handleClose}>
             Close

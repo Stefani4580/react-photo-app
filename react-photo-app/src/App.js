@@ -1,91 +1,105 @@
-import React from "react";
-import "./App.css";
+import React, { Component } from "react";
 // Bootstrap
-import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Image from "react-bootstrap/Image";
-
-// Helper Classes and Functions
-import imageLoader from "./components/images";
-import MyImage from "./components/MyImage";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
 
 // Components
-import UserProfile from "./components/UserProfile";
-import UserLogin from "./components/UserLogin";
+import Reactagram from "./components/Reactagram";
 
-class App extends React.Component {
+export default class App extends Component {
   constructor() {
     super();
-
     this.state = {
-      images: this.loadImages(),
+      loggedIn: "invisible",
+      userName: "",
+      show: false,
+      loginBtnVisibility: "visible",
     };
   }
 
-  loadImages = () => {
-    let jpgs = imageLoader();
-    let images = [];
-    for (let i = 0; i < jpgs.length; i++) {
-      let image = new MyImage(jpgs[i].id, jpgs[i].src);
-      images[i] = image;
-    }
-    return images;
+  handleClose = () => {
+    this.setState({
+      show: false,
+    });
+  };
+  handleShow = () => {
+    this.setState({
+      show: true,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:  ", e.target.value);
+    this.setState({
+      loggedIn: "visible",
+      loginBtnVisibility: "invisible",
+    });
+    this.handleClose();
+  };
+
+  getEmail = (e) => {
+    this.setState({
+      userName: e.target.value,
+    });
   };
 
   render() {
-    const listOfImages = this.state.images.map((item, index) => {
-      // console.log(`${index}:  ${item.filename}`);
-      return (
-        <Col xs={6} md={4} lg={3}>
-          <Image className="image" src={require(`${item.filename}`)} rounded />
-        </Col>
-      );
-    });
-
-  
-
-
     return (
-      <div className="App">
-        <Container fluid>
-          {/* Navbar */}
-          <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home">Reactagram</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#userProfile">User Profile</Nav.Link>
-                <NavDropdown title="Users" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">ilikephotos</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    theRealPhotog
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    weLikePhotosToo
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-              <UserLogin />
-            </Navbar.Collapse>
-          </Navbar>
-          <Row>{listOfImages}</Row>
+      <div>
+        <Container className={loginBtnVisibility}>
+          <Row>
+            <Button variant="primary" onClick={this.handleShow}>
+              Login
+            </Button>
+          </Row>
         </Container>
-        <div id="userProfile">
-        <UserProfile images={this.state.images}  />
 
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={this.getEmail}
+                />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+              Submit
+            </Button>
+
+            <Button variant="secondary" onClick={this.handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <div class={this.state.loggedIn}>
+          <Reactagram userName={this.state.userName} />
         </div>
       </div>
     );
   }
 }
-
-export default App;
