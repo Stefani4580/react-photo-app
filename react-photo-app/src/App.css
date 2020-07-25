@@ -1,3 +1,9 @@
 .App{
   font-family: 'Montserrat Alternates', sans-serif;
 }
+
+.image {
+  height: 300px;
+  width: 300px;
+  margin-bottom: 3%;
+}

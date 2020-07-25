@@ -1,27 +1,17 @@
 import React from "react";
 import "./App.css";
+// Bootstrap
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Col from "react-bootstrap/Col";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import CardGroup from "react-bootstrap/CardGroup";
-import Card from "react-bootstrap/Card";
-import imageLoader from "./components/images";
-import Image from "./components/Image";
+import Image from "react-bootstrap/Image";
 
-// Images
-// import IMAGE_1 from "./assets/images/alex-nemo-hanse-_KP6Ve-rnNw-unsplash.jpg";
-// import IMAGE_2 from "./assets/images/chris-knight--ucnC7PMDqE-unsplash.jpg";
-// import IMAGE_3 from "./assets/images/clarke-sanders-ybPJ47PMT_M-unsplash.jpg";
-// import IMAGE_4 from "./assets/images/hian-oliveira-7-gtkXm2b5U-unsplash.jpg";
-// import IMAGE_5 from "./assets/images/obi-onyeador-uijVyqj-oc8-unsplash.jpg";
-// import IMAGE_6 from "./assets/images/obi-onyeador-zSl8Di_N_9U-unsplash.jpg";
-// import IMAGE_7 from "./assets/images/prince-akachi-LWkFHEGpleE-unsplash.jpg";
-// import IMAGE_8 from "./assets/images/simone-fischer-Rh1FYpKcYLs-unsplash.jpg";
-// import IMAGE_9 from "./assets/images/terricks-noah-n9R0MN3XGvY-unsplash.jpg";
-// import IMAGE_10 from "./assets/images/alex-nemo-hanse-_KP6Ve-rnNw-unsplash.jpg";
+// Helper Classes and Functions
+import imageLoader from "./components/images";
+import myImage from "./components/myImage";
 
 class App extends React.Component {
   constructor() {
@@ -36,19 +26,19 @@ class App extends React.Component {
     let jpgs = imageLoader();
     let images = [];
     for (let i = 0; i < jpgs.length; i++) {
-      let image = new Image(jpgs[i].id, jpgs[i].src);
+      let image = new myImage(jpgs[i].id, jpgs[i].src);
       images[i] = image;
     }
     return images;
   };
 
   render() {
-    const listOfCards = this.state.images.map((item, index) => {
+    const listOfImages = this.state.images.map((item, index) => {
       // console.log("testing list items****", id)
       return (
-        <Card>
-          <Card.Img variant="top" src={require(`${item.filename}`)} />
-        </Card>
+        <Col xs={6} md={4} lg={3}>
+          <Image className="image" src={require(`${item.filename}`)} rounded />
+        </Col>
       );
     });
 
@@ -79,11 +69,7 @@ class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
           </Navbar>
-          <Row>
-            <CardGroup>
-              {listOfCards}
-            </CardGroup>{" "}
-          </Row>
+          <Row>{listOfImages}</Row>
         </Container>
       </div>
     );
