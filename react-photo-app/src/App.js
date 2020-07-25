@@ -11,7 +11,10 @@ import Image from "react-bootstrap/Image";
 
 // Helper Classes and Functions
 import imageLoader from "./components/images";
-import myImage from "./components/myImage";
+import MyImage from "./components/MyImage";
+
+// Components
+import UserProfile from "./components/UserProfile";
 
 class App extends React.Component {
   constructor() {
@@ -26,7 +29,7 @@ class App extends React.Component {
     let jpgs = imageLoader();
     let images = [];
     for (let i = 0; i < jpgs.length; i++) {
-      let image = new myImage(jpgs[i].id, jpgs[i].src);
+      let image = new MyImage(jpgs[i].id, jpgs[i].src);
       images[i] = image;
     }
     return images;
@@ -34,7 +37,7 @@ class App extends React.Component {
 
   render() {
     const listOfImages = this.state.images.map((item, index) => {
-      // console.log("testing list items****", id)
+      // console.log(`${index}:  ${item.filename}`);
       return (
         <Col xs={6} md={4} lg={3}>
           <Image className="image" src={require(`${item.filename}`)} rounded />
@@ -52,7 +55,7 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">User Profile</Nav.Link>
+                <Nav.Link href="#userProfile">User Profile</Nav.Link>
                 <NavDropdown title="Users" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">ilikephotos</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -71,7 +74,10 @@ class App extends React.Component {
           </Navbar>
           <Row>{listOfImages}</Row>
         </Container>
-        <UserProfile />
+        <div id="userProfile">
+        <UserProfile images={this.state.images}  />
+
+        </div>
       </div>
     );
   }
