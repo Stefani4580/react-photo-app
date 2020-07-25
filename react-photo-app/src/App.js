@@ -58,14 +58,14 @@ class App extends React.Component {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <Nav.Link href="#link">User Profile</Nav.Link>
+                <NavDropdown title="Users" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">ilikephotos</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
-                    Another action
+                    theRealPhotog
                   </NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">
-                    Something
+                    weLikePhotosToo
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">
@@ -121,6 +121,7 @@ class App extends React.Component {
             </CardGroup>{" "}
           </Row>
         </Container>
+        <UserProfile />
       </div>
     );
   }
