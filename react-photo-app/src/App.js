@@ -35,7 +35,6 @@ export default class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:  ", e.target.value);
     this.setState({
       loggedIn: "visible",
       loginBtnVisibility: "invisible",
@@ -65,8 +64,8 @@ export default class App extends Component {
                 Login to Reactagram
               </Button>
             </Col>
-            <Col xs={6} md={4} lg={9}>
-              <h4 className={this.state.loggedIn}>Welcome, {this.state.userName}</h4>
+            <Col id="welcome-text" xs={6} md={4} lg={9}>
+              <h4 className={this.state.loggedIn}>User: {this.state.userName}</h4>
             </Col>
           </Row>
         </Container>
@@ -93,9 +92,6 @@ export default class App extends Component {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -109,7 +105,7 @@ export default class App extends Component {
           </Modal.Footer>
         </Modal>
         <div class={this.state.loggedIn}>
-          <Reactagram userName={this.state.userName} />
+          <Reactagram  />
         </div>
       </div>
     );
